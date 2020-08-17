@@ -56,6 +56,8 @@ results = cerebro.run()
 # ---- Format the values from results ----
 df_values = pd.DataFrame(results[0].analyzers.getbyname("cashmarket").get_analysis()).T
 df_values = df_values.iloc[:, 1]
+returns = qs.utils.to_returns(df_values)
+returns.index = pd.to_datetime(returns.index)
 # ----------------------------------------
 
 # ---- Format the benchmark from SPY.csv ----
@@ -66,9 +68,12 @@ with open('SPY.csv', mode='r') as infile:
   }
 
 benchmark = (
-  pd.DataFrame.from_dict(mydict, orient="index").pct_change()
+  pd.DataFrame.from_dict(mydict, orient="index")
 )
+returns_bm = qs.utils.to_returns(benchmark)
+returns_bm.index = pd.to_datetime(returns_bm.index)
 # -------------------------------------------
 
 qs.extend_pandas()
-qs.reports.html(df_values, benchmark=benchmark, output="qs.html")
+qs.reports.full(returns, "SPY")
+# qs.reports.html(df_values, "SPY", output="qs.html")
