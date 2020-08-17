@@ -13,7 +13,7 @@ class BaseStrategy(bt.Strategy):
         slow_ma = bt.ind.EMA(period=self.p.slow_ma)
         self.crossup = bt.ind.CrossUp(fast_ma, slow_ma)
 
-class ManualStopOrStopTrail(BaseStrategy):
+class MultipleTPWithSL(BaseStrategy):
     params = dict(
         stop_loss_percentage=3,
     )

@@ -2,7 +2,7 @@ from pytz import timezone
 from datetime import datetime, timedelta
 import backtrader as bt
 from config import CustomDataset, FullMoney
-from stopLoss import ManualStopOrStopTrail
+from stopLoss import MultipleTPWithSL
 
 startDate = datetime(2018, 8, 15, 0, 0, 0, 0, timezone('UTC'))
 endDate = datetime(2018, 10, 15, 0, 0, 0, 0, timezone('UTC'))
@@ -14,7 +14,7 @@ data = CustomDataset(
 )
 
 cerebro = bt.Cerebro()
-cerebro.addstrategy(ManualStopOrStopTrail)
+cerebro.addstrategy(MultipleTPWithSL)
 cerebro.addsizer(FullMoney)
 
 # ---- Resample minutes to 4 hours timeframe ----
