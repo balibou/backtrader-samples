@@ -92,6 +92,7 @@ class MultipleTPWithSL(BaseStrategy):
     def next(self):
         self.date = self.data.datetime.date()
         print("{} {:.2f}".format(self.date, self.data[0]))
+        if len(self.stopLossList): print(self.stopLossList[0].alive())
 
         if len(self.stopLossList) > 0 and self.shouldUpdateSLSize:
             print('SL size: {}, Next SL Size position: {}'.format(self.stopLossList[0].created.size, self.position.size))

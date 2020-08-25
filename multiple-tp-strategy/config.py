@@ -15,5 +15,5 @@ class CustomDataset(bt.feeds.GenericCSVData):
 
 class FullMoney(PercentSizer):
   params = (
-    ('percents', 99),
+    ('percents', 24),
   )

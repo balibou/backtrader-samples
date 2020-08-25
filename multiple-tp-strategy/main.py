@@ -2,10 +2,10 @@ from pytz import timezone
 from datetime import datetime, timedelta
 import backtrader as bt
 from config import CustomDataset, FullMoney
-from stopLoss import MultipleTPWithSL
+from stopLossWithBracketOrders import MultipleTPWithSL
 
 startDate = datetime(2018, 8, 15, 0, 0, 0, 0, timezone('UTC'))
-endDate = datetime(2018, 10, 15, 0, 0, 0, 0, timezone('UTC'))
+endDate = datetime(2019, 10, 15, 0, 0, 0, 0, timezone('UTC'))
 data = CustomDataset(
     dataname="dataset/BTCUSDT-1m.csv",
     timeframe=bt.TimeFrame.Minutes,
